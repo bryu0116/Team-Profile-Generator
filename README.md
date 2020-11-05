@@ -7,8 +7,6 @@ Team Generator is a node CLI that takes in information about employees and gener
 - [Installation Steps](#installation-steps)
 - [Usage Instructions](#usage-instructions)
 - [Licenses](#licenses)
-- [Contribution Guidelines](#contribution-guidelines)
-- [Testing Instructions](#testing-instructions)
 
 ---
 ## Installation 
