@@ -18,10 +18,10 @@ Node.js and npm must be installed, as well as the Inquirer package. The applicat
 In order to start this command line application, go to the Team-Profile-Generator directory in the Git Bash, and run the command 'node app.js'.
 
 ## Screen Recording
-![Demo Screen Recording](images/TPGSR.gif)
+![Demo Screen Recording](Develop/images/TPGSR.gif)
 
 ## Sample HTML Output
-![Sample HTML Page](images/TPGOutput.png)
+![Sample HTML Page](Develop/images/TPGOutput.png)
 
 ## Licenses
 This product is licensed under the MIT license.
