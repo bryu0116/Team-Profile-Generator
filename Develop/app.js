@@ -13,6 +13,150 @@ const render = require("./lib/htmlRenderer");
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
+function makeManager() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "Please create the Manager card first (required).\n  What is the Manager's name?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is the Manager's email address?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is the Manager's id number?"
+        },
+        {
+            type: "list",
+            name: "role",
+            message: "Enter the role of this Employee:",
+            choices: ["Manager"]
+        },
+        {
+            type: "input",
+            name: "officeNumber",
+            message: "What is the Manager's office number?"
+        },
+        {
+            type: "list",
+            name: "position",
+            message: "Would you like to add another role?",
+            choices: ['Engineer', 'Intern', 'Exit'],
+        }
+    ]).then(function (data) {
+        let manager = new Manager(data.name, data.id, data.email, data.officeNumber);
+        employeeInformation.push(manager);
+
+        switch (data.position) {
+            case "Engineer":
+                makeEngineer();
+                break;
+            case "Intern":
+                makeIntern();
+                break;
+            default:
+                createHtml();
+        }
+    });
+}
+function makeEngineer() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is the Engineer's name?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is the Engineer's email address?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is the Engineer's id number?"
+        },
+        {
+            type: "input",
+            name: "github",
+            message: "Enter the Engineer's GitHub user name:",
+        },
+        {
+            type: "list",
+            name: "position",
+            message: "Would you like to add another role?",
+            choices: ['Engineer', 'Intern', 'Exit'],
+        }
+    ]).then(function (data) {
+        let engineer = new Engineer(data.name, data.id, data.email, data.github);
+        employeeInformation.push(engineer);
+
+        switch (data.position) {
+            case "Engineer":
+                makeEngineer();
+                break;
+            case "Intern":
+                makeIntern();
+                break;
+            default:
+                createHtml();
+        }
+    });
+}
+
+function makeIntern() {
+    inquirer.prompt([
+        {
+            type: "input",
+            name: "name",
+            message: "What is the Intern's name?"
+        },
+        {
+            type: "input",
+            name: "email",
+            message: "What is the Intern's email address?"
+        },
+        {
+            type: "input",
+            name: "id",
+            message: "What is the Intern's id number?"
+        },
+        {
+            type: "input",
+            name: "school",
+            message: "What is the name of the Intern's school?",
+        },
+        {
+            type: "list",
+            name: "position",
+            message: "Would you like to add another role?",
+            choices: ['Engineer', 'Intern', 'Exit'],
+        }
+    ]).then(function (data) {
+        let intern = new Intern(data.name, data.id, data.email, data.school);
+        employeeInformation.push(intern);
+
+        switch (data.position) {
+            case "Engineer":
+                makeEngineer();
+                break;
+            case "Intern":
+                makeIntern();
+                break;
+            default:
+                createHtml();
+        }
+    });
+}
+function createHtml() {
+    fs.writeFileSync(outputPath, render(employeeInformation), "utf-8")
+}
+
+makeManager();
 
 // After the user has input all employees desired, call the `render` function (required
 // above) and pass in an array containing all employee objects; the `render` function will
